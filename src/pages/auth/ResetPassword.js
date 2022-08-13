@@ -13,15 +13,15 @@ const ResetPassword = () => {
           <div className='text-sm text-textgray my-3'>Enter your OTP and new Password</div>
           <form>
             <Input
-              label='OTP'
+              label='New Password'
               input={{
-                type: 'number',
-                placeHolder: 'Otp',
+                type: 'password',
+                placeHolder: 'Password',
                 value: ""
               }}
             />
             <Input
-              label='New Password'
+              label='Confirm Password'
               input={{
                 type: 'password',
                 placeHolder: 'New Password',

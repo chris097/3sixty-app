@@ -3,7 +3,7 @@ export const PRIVATE_ROUTE = {
     AUTH_LOGIN: '/login',
     AUTH_REGISTER: '/register',
     AUTH_FORGOT_PASSWORD: '/forgot-password',
-    AUTH_RESET_PASSWORD: '/reset-password'
+    AUTH_RESET_PASSWORD: '/reset-password/:token'
 };
 
 export const PUBLIC_ROUTE = {
