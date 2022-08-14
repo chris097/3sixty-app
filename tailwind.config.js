@@ -16,19 +16,25 @@ module.exports = {
         darkgray: "#EEEEEE",
         secondaryblue: "rgba(53, 109, 251, 0.1)",
         skyblue: "#F7FBFD",
+        dartblue: "#F5F8FE",
+        dartgray: "#CCCCCC",
         shadowgray: "rgba(196, 196, 196, 0.05)",
       },
       fontFamily: {
-        'sans': ['Open Sans', 'sans-serif']
+        'sans': ['Open Sans', 'sans-serif'],
+        'roboto': ['Roboto', 'sans-serif'],
       },
       width: {
         '111px': "111px",
         '177px': "177px",
         '237px': "237px",
+        '202px': "202px",
+        '356px': "356px",
         '365px': "365px",
       },
       height: {
         "195px": "195px",
+        "200px": "200px",
         "259px": "259px"
       },
       boxShadow: {

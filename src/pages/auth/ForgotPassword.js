@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Input from '../../components/Input'
 import Logo from '../../public/svgs/Logo'
+import { PRIVATE_ROUTE } from '../../routes/url'
 
 const ForgotPassword = () => {
   return (
@@ -20,9 +22,15 @@ const ForgotPassword = () => {
                 value: ""
               }}
             />
-            <button className='bg-primaryblue text-white w-full h-12 rounded-full mt-5' type='submit'>Login</button>
+            <Link to={PRIVATE_ROUTE.AUTH_LOGIN}>
+              <button className='bg-primaryblue text-white w-full h-12 rounded-full mt-5' type='submit'>Send</button>
+            </Link>
           </form>
-          <div className='text-center text-xs my-3'>Already have an account? <span className='text-primaryblue'>Sign up here</span></div>
+          <div className='text-center text-xs mt-5'>Go go back to
+            <Link to={PRIVATE_ROUTE.AUTH_LOGIN}>
+              <span className='text-primaryblue ml-1'>Sign in page</span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

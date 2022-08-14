@@ -34,16 +34,16 @@ const DashboardHeader = () => {
           <PrimaryButton
             w='w-16'
             bg='bg-lightblue'
-            h='h-12'
+            h='h-11'
             color='text-white'
-            name={<Plus />}
+            name={<Plus color='white' />}
             topShape='rounded-tl-full'
             bottomShape='rounded-bl-full'
         />
         <PrimaryButton
             w='w-111px'
             bg='bg-primaryblue'
-            h='h-12' color='text-white'
+            h='h-11' color='text-white'
             name='Create Note'
             topShape='rounded-tr-full'
             bottomShape='rounded-br-full'
