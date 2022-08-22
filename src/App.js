@@ -4,6 +4,7 @@ import {
   Route,
   Routes
 } from 'react-router-dom'
+import { AuthProvider } from "./context/authContext";
 import routes from "./routes";
 
 function App() {
@@ -18,13 +19,16 @@ function App() {
 
   return (
     <Suspense fallback="Loading...">
+      <AuthProvider>
         <Router>
           <Routes>
             {publicRoute}
             {privateRoute}
           </Routes>
         </Router>
-      </Suspense>
+        </AuthProvider>
+    </Suspense>
+
   );
 }
 
