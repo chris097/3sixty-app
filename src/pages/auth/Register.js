@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
 import { useFormik } from 'formik';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Input from '../../components/Input'
 import Logo from '../../public/svgs/Logo'
-import { PRIVATE_ROUTE } from '../../routes/url'
+import { PRIVATE_ROUTE, PUBLIC_ROUTE } from '../../routes/url'
 import { signupSchema } from '../../validator';
 import { authContext } from '../../context/authContext';
 // import { useAuth } from '../../context/authContext';
@@ -13,7 +13,7 @@ const Register = () => {
 
   const auth = useContext(authContext);
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -26,7 +26,7 @@ const Register = () => {
     onSubmit: values => {
         // if(values) return <Link to='/user/notes' replace />
       return auth.register(values,
-      // navigate(PUBLIC_ROUTE.DASHBOARD_NOTE, {replace: true})
+      navigate(PUBLIC_ROUTE.DASHBOARD_NOTE, {replace: true})
       )
     }
   })
