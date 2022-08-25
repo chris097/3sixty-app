@@ -1,4 +1,3 @@
-
 const authApi = async (url, payload, responses) => {
 
     const headers = new Headers({
