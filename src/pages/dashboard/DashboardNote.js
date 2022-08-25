@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import React, {useState} from 'react';
+import fetchQuery from '../../api/fetchApi';
 import DartCard from '../../components/Card/DartCard';
 import formatDate from '../../format';
 // import { DART_CARDS } from '../../DUMMY_DATA';
@@ -13,7 +13,8 @@ const DashboardNote = () => {
   const [currIndx, setCurrIndx] = useState(0);
   const [active, setActive] = useState(1);
 
-  const { data, isLoading } = useQuery(['notes'], fetchDashboardNotes);
+  const { data, isLoading } = fetchQuery('notes', fetchDashboardNotes);
+  const cards = data?.data;
 
   const START_SLICE = 0;
   const END_SLICE = 100;
@@ -27,7 +28,7 @@ const DashboardNote = () => {
     <div className='bg-dartblue w-full min-h-screen'>
       <div className='flex h-screen space-x-8'>
         <div className='w-356px border-l overflow-scroll h-5/6 border-grayshade bg-white'>
-          {isLoading ? 'Loading...' : (!data?.data?.length ? 'Note list empty' : data?.data?.map((card, index) => (
+          {isLoading ? 'Loading...' : (!cards?.length ? 'Note list empty' : cards?.map((card, index) => (
             <DartCard
               key={index}
               title={card?.title}
@@ -45,10 +46,10 @@ const DashboardNote = () => {
         </div>
         <div className='flex w-3/4 h-auto mb-40 mt-5'>
           <div className='bg-white w-full pt-20 pb-5 px-20'>
-            {isLoading ? 'Loading...' : (!data?.data?.length ? 'No note found.' :
+            {isLoading ? 'Loading...' : (!cards?.length ? 'No note found.' :
               <>
-                <div className='text-5xl font-roboto'>{data?.data[currIndx].title}</div>
-                <p className='text-sm text-textgray mt-8'>{data?.data[currIndx].description}</p>
+                <div className='text-5xl font-roboto'>{cards[currIndx].title}</div>
+                <p className='text-sm text-textgray mt-8'>{cards[currIndx].description}</p>
               </>
             )}
           </div>
