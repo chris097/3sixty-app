@@ -23,7 +23,8 @@ const Login = () => {
       return auth.login(values,
         responses => {
           if (responses.status === 201) {
-            return navigate(PUBLIC_ROUTE.DASHBOARD_NOTE, { replace: true })
+            navigate(PUBLIC_ROUTE.DASHBOARD_NOTE, { replace: true })
+            toast.success(responses.message)
           } else {
             toast.error(responses.message)
           }
