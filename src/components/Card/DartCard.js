@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Dot from '../../public/svgs/Dot';
 
 const DartCard = (props) => {
-  console.log('num',props.curIndx)
   return (
     <div onClick={props.clickHandler} className={`border-b cursor-pointer ${props.curIndx +1 === props.active ? 'bg-skyblue' : 'bg-white'} border-darkgray h-auto last:border-b-0 px-6 py-3`}>
           <div className='text-lg font-bold font-roboto text-primarygray'>{props.title}</div>

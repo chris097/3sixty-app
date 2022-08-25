@@ -2,8 +2,9 @@
 import React, { createContext } from "react";
 import PropTypes from 'prop-types';
 import authApi from "../api/auth";
+import { apiUrl } from "../api/url";
 
-const { REACT_APP_BACKEND_URL} = process.env;
+const { REACT_APP_BACKEND_URL } = process.env;
 
 export const authContext = createContext({
     // isLoggedIn: false,
@@ -15,13 +16,14 @@ export const authContext = createContext({
 export const AuthProvider = ({ children }) => {
     // const [loggedIn, setLoggedIn] = useState(false);
 
-    const login = () => {
-        console.log('Logged in...')
+    const login = (payload, responses) => {
+        const loginUrl = `${REACT_APP_BACKEND_URL}/${apiUrl.LOGIN_URL}`;
+        return authApi(loginUrl, payload, responses)
     };
 
-    const register = (payload) => {
-        const registerUrl = `${REACT_APP_BACKEND_URL}/user/register`;
-        return authApi(registerUrl, payload)
+    const register = (payload, responses) => {
+        const registerUrl = `${REACT_APP_BACKEND_URL}/${apiUrl.REGISTER_URL}`;
+        return authApi(registerUrl, payload, responses)
     }
 
     const logout = () => {

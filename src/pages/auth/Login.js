@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../components/Input';
 import Logo from '../../public/svgs/Logo';
-import { PRIVATE_ROUTE } from '../../routes/url';
+import { PRIVATE_ROUTE, PUBLIC_ROUTE } from '../../routes/url';
 import { loginSchema } from '../../validator';
+import { authContext } from '../../context/authContext';
+import toast from 'react-hot-toast';
 
 const Login = () => {
+
+  const auth = useContext(authContext);
+  const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {
@@ -15,7 +20,15 @@ const Login = () => {
     },
     validationSchema: loginSchema,
     onSubmit: values => {
-      console.log(values)
+      return auth.login(values,
+        responses => {
+          if (responses.status === 201) {
+            return navigate(PUBLIC_ROUTE.DASHBOARD_NOTE, { replace: true })
+          } else {
+            toast.error(responses.message)
+          }
+        }
+      )
     }
   });
 

@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import { AuthProvider } from "./context/authContext";
 import routes from "./routes";
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
   return (
     <Suspense fallback="Loading...">
       <AuthProvider>
+        <Toaster position="top-center" />
         <Router>
           <Routes>
             {publicRoute}

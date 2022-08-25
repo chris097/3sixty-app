@@ -6,6 +6,7 @@ import Logo from '../../public/svgs/Logo'
 import { PRIVATE_ROUTE, PUBLIC_ROUTE } from '../../routes/url'
 import { signupSchema } from '../../validator';
 import { authContext } from '../../context/authContext';
+import toast from 'react-hot-toast';
 // import { useAuth } from '../../context/authContext';
 
 
@@ -26,7 +27,13 @@ const Register = () => {
     onSubmit: values => {
         // if(values) return <Link to='/user/notes' replace />
       return auth.register(values,
-      navigate(PUBLIC_ROUTE.DASHBOARD_NOTE, {replace: true})
+        responses => {
+          if (responses.status === 201) {
+            navigate(PUBLIC_ROUTE.DASHBOARD_NOTE, { replace: true })
+            toast.success(responses.message)
+          }
+        }
+
       )
     }
   })
