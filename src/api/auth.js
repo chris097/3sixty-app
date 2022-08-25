@@ -1,4 +1,5 @@
-const authApi = async (url, payload) => {
+
+const authApi = async (url, payload, responses) => {
 
     const headers = new Headers({
         "Content-Type": "application/json",
@@ -14,9 +15,7 @@ const authApi = async (url, payload) => {
     
     await fetch(request)
         .then((responses) => responses.json())
-        .then(data => {
-            return data;
-        })
+        .then(responses)
         .catch(err => console.log(err.message))
 };
 

@@ -18,7 +18,6 @@ const DashboardNote = () => {
     return sliceText.slice(START_SLICE, END_SLICE);
   };
 
-
   return (
     <div className='bg-dartblue w-full min-h-screen'>
       <div className='flex h-screen space-x-8'>
