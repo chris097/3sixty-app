@@ -7,6 +7,7 @@ import Dot from '../../public/svgs/Dot';
 import Minus from '../../public/svgs/Minus';
 import Plus from '../../public/svgs/Plus';
 import { fetchDashboardNotes } from '../../services';
+import { CONSTANT_TEXT } from '../../constant'
 
 const DashboardNote = () => {
 
@@ -16,19 +17,16 @@ const DashboardNote = () => {
   const { data, isLoading } = fetchQuery('notes', fetchDashboardNotes);
   const cards = data?.data;
 
-  const START_SLICE = 0;
-  const END_SLICE = 100;
-
   const sliceTextFn = (text) => {
     const sliceText = text;
-    return sliceText.slice(START_SLICE, END_SLICE);
+    return sliceText.slice(CONSTANT_TEXT.START_SLICE, CONSTANT_TEXT.END_SLICE);
   };
 
   return (
     <div className='bg-dartblue w-full min-h-screen'>
       <div className='flex h-screen space-x-8'>
         <div className='w-356px border-l overflow-scroll h-5/6 border-grayshade bg-white'>
-          {isLoading ? 'Loading...' : (!cards?.length ? 'Note list empty' : cards?.map((card, index) => (
+          {isLoading ? CONSTANT_TEXT.LOADING : (!cards?.length ? CONSTANT_TEXT.EMPTY_LIST('note') : cards?.map((card, index) => (
             <DartCard
               key={index}
               title={card?.title}
@@ -46,7 +44,7 @@ const DashboardNote = () => {
         </div>
         <div className='flex w-3/4 h-auto mb-40 mt-5'>
           <div className='bg-white w-full pt-20 pb-5 px-20'>
-            {isLoading ? 'Loading...' : (!cards?.length ? 'No note found.' :
+            {isLoading ? 'Loading...' : (!cards?.length ? CONSTANT_TEXT.NOT_FOUND('Note') :
               <>
                 <div className='text-5xl font-roboto'>{cards[currIndx].title}</div>
                 <p className='text-sm text-textgray mt-8'>{cards[currIndx].description}</p>
