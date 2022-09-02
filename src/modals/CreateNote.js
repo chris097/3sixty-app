@@ -2,7 +2,7 @@ import React from 'react'
 
 const CreateNote = () => {
   return (
-    <div>CreateNote modal</div>
+    <div>CreateNote modakeke</div>
   )
 }
 
