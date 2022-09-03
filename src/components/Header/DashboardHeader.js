@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { toggleContext } from '../../context/toggleContext'
 import { NOTE_LINKS } from '../../DUMMY_DATA'
 import Logo from '../../public/svgs/Logo'
 import Plus from '../../public/svgs/Plus'
@@ -7,6 +8,12 @@ import Search from '../../public/svgs/Search'
 import PrimaryButton from '../Button/PrimaryButton'
 
 const DashboardHeader = () => {
+  const toggle = useContext(toggleContext);
+
+  const handleClick = () => {
+    return toggle.toggleCreateNote()
+  };
+
   return (
     <>
       <div className='h-16 w-full items-center flex px-14 space-x-28'>
@@ -30,7 +37,7 @@ const DashboardHeader = () => {
             ))
           }
         </div>
-        <div className='flex'>
+        <div onClick={handleClick} className='flex'>
           <PrimaryButton
             w='w-16'
             bg='bg-lightblue'

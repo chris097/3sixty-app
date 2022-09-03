@@ -19,6 +19,7 @@ module.exports = {
         dartblue: "#F5F8FE",
         dartgray: "#CCCCCC",
         shadowgray: "rgba(196, 196, 196, 0.05)",
+        overlaygray: "rgba(0, 0, 0, 0.2)",
       },
       fontFamily: {
         'sans': ['Open Sans', 'sans-serif'],
@@ -33,6 +34,7 @@ module.exports = {
         '365px': "365px",
       },
       height: {
+        "184px": "184px",
         "195px": "195px",
         "200px": "200px",
         "259px": "259px"

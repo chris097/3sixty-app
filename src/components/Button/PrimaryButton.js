@@ -1,9 +1,9 @@
 import React from 'react';
-import PropsTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const PrimaryButton = (props) => {
     return (
-        <button className={`
+        <button type={props.type} className={`
             ${props.color} 
             ${props.bg} 
             ${props.h} 
@@ -17,13 +17,17 @@ const PrimaryButton = (props) => {
 };
 
 PrimaryButton.propTypes = {
-    w: PropsTypes.string,
-    h: PropsTypes.string,
-    bg: PropsTypes.string,
-    color: PropsTypes.string,
-    name: PropsTypes.string,
-    topShape: PropsTypes.string,
-    bottomShape: PropsTypes.string
+    w: PropTypes.string,
+    h: PropTypes.string,
+    bg: PropTypes.string,
+    color: PropTypes.string,
+    name: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object
+    ]),
+    topShape: PropTypes.string,
+    bottomShape: PropTypes.string,
+    type: PropTypes.string
 }
 
 export default PrimaryButton

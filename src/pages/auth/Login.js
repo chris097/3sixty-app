@@ -44,6 +44,7 @@ const Login = () => {
           <form onSubmit={formik.handleSubmit}>
             <Input
               label='Email'
+              className='w-full h-11 mt-1 text-sm bg-shadowgray border px-3 border-nextgray rounded-md outline-none focus:border-nextgray'
               input={{
                 type: 'email',
                 placeholder: 'Email',
@@ -55,6 +56,7 @@ const Login = () => {
             {formik.touched.email && formik.errors.email ? (<span className='text-xs text-red-500'>email is required.</span>): null}
             <Input
               label='Password'
+              className='w-full h-11 mt-1 text-sm bg-shadowgray border px-3 border-nextgray rounded-md outline-none focus:border-nextgray'
               input={{
                 type: 'password',
                 placeholder: 'Password',
