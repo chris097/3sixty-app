@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import fetchQuery from '../../api/fetchApi';
 import DartCard from '../../components/Card/DartCard';
 import formatDate from '../../format';
@@ -8,11 +8,18 @@ import Minus from '../../public/svgs/Minus';
 import Plus from '../../public/svgs/Plus';
 import { fetchDashboardNotes } from '../../services';
 import { CONSTANT_TEXT } from '../../constant'
+import CreateNote from '../../modals/CreateNote';
+import { toggleContext } from '../../context/toggleContext';
+
 
 const DashboardNote = () => {
 
   const [currIndx, setCurrIndx] = useState(0);
   const [active, setActive] = useState(1);
+
+  const toggle = useContext(toggleContext);
+
+  // const [state, dispatch] = useReducer(reducer, initialState);
 
   const { data, isLoading } = fetchQuery('notes', fetchDashboardNotes);
   const cards = data?.data;
@@ -23,6 +30,8 @@ const DashboardNote = () => {
   };
 
   return (
+    <>
+    {toggle.open && <CreateNote />}
     <div className='bg-dartblue w-full min-h-screen'>
       <div className='flex h-screen space-x-8'>
         <div className='w-356px border-l overflow-scroll h-5/6 border-grayshade bg-white'>
@@ -66,7 +75,8 @@ const DashboardNote = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+      </>
   )
 }
 

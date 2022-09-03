@@ -9,4 +9,9 @@ export const signupSchema = Yup.object({
 export const loginSchema = Yup.object({
     email: Yup.string().email('email is required').required().trim(),
     password: Yup.string().required()
-})
+});
+export const noteSchema = Yup.object({
+    title: Yup.string().required(),
+    tag: Yup.string().required(),
+    note: Yup.string().required().min(50).max(1000),
+});

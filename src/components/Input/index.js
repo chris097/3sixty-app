@@ -6,7 +6,7 @@ const Input = (props) => {
         <div className='mt-2'>
             <label className='text-sm' htmlFor={props.label}>{props.label}</label>
             <input
-                className='w-full h-11 mt-1 text-sm bg-shadowgray border px-3 border-nextgray rounded-md outline-none focus:border-nextgray'
+                className={props.className}
                 {...props.input}
             />
         </div>
@@ -15,7 +15,8 @@ const Input = (props) => {
 
 Input.propTypes = {
     label: PropTypes.string,
-    input: PropTypes.any
+    input: PropTypes.any,
+    className: PropTypes.any,
 }
 
 export default Input

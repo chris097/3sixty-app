@@ -16,6 +16,7 @@ const ResetPassword = () => {
           <form>
             <Input
               label='New Password'
+              className='w-full h-11 mt-1 text-sm bg-shadowgray border px-3 border-nextgray rounded-md outline-none focus:border-nextgray'
               input={{
                 type: 'password',
                 placeHolder: 'Password',
@@ -24,6 +25,7 @@ const ResetPassword = () => {
             />
             <Input
               label='Confirm Password'
+              className='w-full h-11 mt-1 text-sm bg-shadowgray border px-3 border-nextgray rounded-md outline-none focus:border-nextgray'
               input={{
                 type: 'password',
                 placeHolder: 'New Password',

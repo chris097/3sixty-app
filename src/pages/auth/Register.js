@@ -48,6 +48,7 @@ const Register = () => {
           <form onSubmit={formik.handleSubmit}>
             <Input
               label='Name'
+              className='w-full h-11 mt-1 text-sm bg-shadowgray border px-3 border-nextgray rounded-md outline-none focus:border-nextgray'
               input={{
                 type: 'text',
                 name: 'name',
@@ -59,6 +60,7 @@ const Register = () => {
             {formik.touched.name && formik.errors.name ? (<span className='text-xs text-red-500'>firstname is required.</span>) : null}
             <Input
               label='Username'
+              className='w-full h-11 mt-1 text-sm bg-shadowgray border px-3 border-nextgray rounded-md outline-none focus:border-nextgray'
               input={{
                 type: 'text',
                 name: 'username',
@@ -70,6 +72,7 @@ const Register = () => {
              {formik.touched.username && formik.errors.username ? (<span className='text-xs text-red-500'>username is optional.</span>) : null}
             <Input
               label='Email'
+              className='w-full h-11 mt-1 text-sm bg-shadowgray border px-3 border-nextgray rounded-md outline-none focus:border-nextgray'
               input={{
                 type: 'email',
                 name: 'email',
@@ -81,6 +84,7 @@ const Register = () => {
             {formik.touched.email && formik.errors.email ? (<span className='text-xs text-red-500'>email is required.</span>) : null}
             <Input
               label='Password'
+              className='w-full h-11 mt-1 text-sm bg-shadowgray border px-3 border-nextgray rounded-md outline-none focus:border-nextgray'
               input={{
                 type: 'password',
                 name: 'password',
