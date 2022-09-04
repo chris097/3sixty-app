@@ -7,21 +7,21 @@ import Dot from '../../public/svgs/Dot';
 import Minus from '../../public/svgs/Minus';
 import Plus from '../../public/svgs/Plus';
 import { fetchDashboardNotes } from '../../services';
-import { CONSTANT_TEXT } from '../../constant'
+import { CONSTANT_TEXT } from '../../helpers/constant'
 import CreateNote from '../../modals/CreateNote';
 import { toggleContext } from '../../context/toggleContext';
+import EditNote from '../../modals/EditModal';
+import DeleteNote from '../../modals/DeleteNote';
 
 
 const DashboardNote = () => {
 
   const [currIndx, setCurrIndx] = useState(0);
-  const [active, setActive] = useState(1);
+  const [show, setShow] = useState(false);
 
   const toggle = useContext(toggleContext);
 
-  // const [state, dispatch] = useReducer(reducer, initialState);
-
-  const { data, isLoading } = fetchQuery('notes', fetchDashboardNotes);
+  const { data, isLoading } = fetchQuery(['notes'], fetchDashboardNotes);
   const cards = data?.data;
 
   const sliceTextFn = (text) => {
@@ -31,24 +31,29 @@ const DashboardNote = () => {
 
   return (
     <>
-    {toggle.open && <CreateNote />}
+      {toggle.create && <CreateNote />}
+      {toggle.edit && <EditNote />}
+      {toggle.delete && <DeleteNote />}
     <div className='bg-dartblue w-full min-h-screen'>
       <div className='flex h-screen space-x-8'>
         <div className='w-356px border-l overflow-scroll h-5/6 border-grayshade bg-white'>
-          {isLoading ? CONSTANT_TEXT.LOADING : (!cards?.length ? CONSTANT_TEXT.EMPTY_LIST('note') : cards?.map((card, index) => (
-            <DartCard
-              key={index}
-              title={card?.title}
-              description={sliceTextFn(card?.description)}
-              tag={card?.tag}
-              created_at={formatDate(card?.date)}
-              curIndx={index}
-              active={active}
-              clickHandler={() => {
-                setCurrIndx(index)
-                setActive(card?.id)
-              }}
-            />
+            {isLoading ? CONSTANT_TEXT.LOADING
+              : (!cards?.length ? CONSTANT_TEXT.EMPTY_LIST('note')
+              : cards?.map((card, index) => (
+              <DartCard
+                  key={index}
+                  title={card?.title}
+                  description={sliceTextFn(card?.description)}
+                  tag={card?.tag}
+                  created_at={formatDate(card?.date)}
+                  curIndx={index}
+                  show={show}
+                  activeIndx={currIndx}
+                  clickHandler={() => {
+                    setCurrIndx(index)
+                    setShow(open => !open)
+                  }}
+              />
           )))}
         </div>
         <div className='flex w-3/4 h-auto mb-40 mt-5'>

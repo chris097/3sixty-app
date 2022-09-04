@@ -1,10 +1,13 @@
+import React, { useContext } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { useFormik } from 'formik';
-import React, { useContext } from 'react'
+import toast from 'react-hot-toast';
 import PrimaryButton from '../components/Button/PrimaryButton';
 import Input from '../components/Input';
 import Textarea from '../components/Textarea';
 import { toggleContext } from '../context/toggleContext';
 import Close from '../public/svgs/Close';
+import { createNewNote } from '../services';
 import { noteSchema } from '../validator';
 
 const CreateNote = () => {
@@ -15,15 +18,27 @@ const CreateNote = () => {
     return toggle.toggleCloseNote()
   };
 
+  const queryClient = useQueryClient()
+
   const formik = useFormik({
     initialValues: {
       title: '',
       tag: '',
-      note: ''
+      description: ''
     },
     validationSchema: noteSchema,
     onSubmit: values => {
-      console.log(values)
+      return createNewNote(values,
+        responses => {
+          if (responses) {
+            toast.success(responses.message)
+            toggle.toggleCloseNote()
+            queryClient.invalidateQueries('notes')
+          } else {
+            toast.error(responses.message)
+          }
+        }
+      )
     }
   })
 
@@ -66,13 +81,13 @@ const CreateNote = () => {
                 label='Note'
                 className='w-full h-184px mt-1 text-sm bg-shadowgray border p-3 border-nextgray rounded-md outline-none focus:border-nextgray'
                 textarea={{
-                  name: 'note',
-                  id: 'note',
-                  placeholder: 'note body',
-                  ...formik.getFieldProps('note')
+                  name: 'description',
+                  id: 'description',
+                  placeholder: 'description',
+                  ...formik.getFieldProps('description')
                 }}
               />
-              {formik.touched.note && formik.errors.note ? (<span className='text-xs text-red-500'>note is required.</span>): null}
+              {formik.touched.description && formik.errors.description ? (<span className='text-xs text-red-500'>description is required, (min 50 words! max 100 words).</span>): null}
               <div className='my-4'>
                 <PrimaryButton
                   type='submit'
@@ -80,7 +95,7 @@ const CreateNote = () => {
                   bg='bg-primaryblue'
                   w='w-36'
                   h='h-12'
-                  name='Create'
+                  name= {formik.isSubmitting ? 'loading...': 'Create'}
                   topShape='rounded-full'
               />
               </div>
@@ -92,4 +107,4 @@ const CreateNote = () => {
   )
 }
 
-export default CreateNote
+export default CreateNote;

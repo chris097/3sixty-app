@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         primaryblue: "#356DFB",
+        primaryred: "#F13843",
         lightblue: "#507EF5",
         primarygray: "#444444",
         secondarygray: "#555555",
@@ -19,6 +20,8 @@ module.exports = {
         dartblue: "#F5F8FE",
         dartgray: "#CCCCCC",
         shadowgray: "rgba(196, 196, 196, 0.05)",
+        shadowred: "rgba(241, 56, 67, 0.2)",
+        dropdownblue: "rgba(53, 109, 251, 0.07)",
         overlaygray: "rgba(0, 0, 0, 0.2)",
       },
       fontFamily: {
@@ -27,6 +30,7 @@ module.exports = {
       },
       width: {
         '111px': "111px",
+        '146px': "146px",
         '177px': "177px",
         '237px': "237px",
         '202px': "202px",

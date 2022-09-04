@@ -13,5 +13,5 @@ export const loginSchema = Yup.object({
 export const noteSchema = Yup.object({
     title: Yup.string().required(),
     tag: Yup.string().required(),
-    note: Yup.string().required().min(50).max(1000),
+    description: Yup.string().required().min(50).max(1000),
 });

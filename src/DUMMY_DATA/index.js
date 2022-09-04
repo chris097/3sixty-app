@@ -1,4 +1,5 @@
 import React from 'react';
+import Edit from '../public/svgs/Edit';
 import Gsign from '../public/svgs/Gsign';
 import Note from '../public/svgs/Note';
 import Todo from '../public/svgs/Todo';
@@ -14,6 +15,13 @@ export const NOTE_LINKS = [
   { icon: <Note />, name: 'Notes', size: (n) => n },
   { icon: <Todo />, name: 'Todos', size: (n) => n }
 ];
+
+export const DROP_DOWNS = [
+  { id: 1, icon: <Edit />, name: 'Edit' },
+  { id: 2, icon: <Edit />, name: 'Delete' },
+  { id: 3, icon: <Edit />, name: 'Print' },
+  { id: 4, icon: <Edit />, name: 'Archive' },
+]
 
 // export const DART_CARDS = [
 //   {
