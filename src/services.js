@@ -2,6 +2,7 @@
 
 import authApi from "./api/auth";
 import queryApi from "./api/queryApi";
+import { apiUrl } from "./api/url";
 
 /* eslint-disable no-unused-vars */
 const { REACT_APP_BACKEND_URL } = process.env;
