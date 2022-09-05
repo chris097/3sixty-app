@@ -7,9 +7,11 @@ import Input from '../components/Input';
 import Textarea from '../components/Textarea';
 import { toggleContext } from '../context/toggleContext';
 import Close from '../public/svgs/Close';
-import { createNewNote } from '../services';
+import { editNote } from '../services';
+import PropTypes from 'prop-types';
+import { CONSTANT_TEXT } from '../helpers/constant';
 
-const EditNote = () => {
+const EditNote = (props) => {
 
   const toggle = useContext(toggleContext);
   
@@ -21,12 +23,12 @@ const EditNote = () => {
 
   const formik = useFormik({
     initialValues: {
-      title: '',
-      tag: '',
-      description: ''
+      title: props.title,
+      tag: props.tag,
+      description: props.description
     },
     onSubmit: values => {
-      return createNewNote(values,
+      return editNote(values, props.id,
         responses => {
           if (responses) {
             toast.success(responses.message)
@@ -60,7 +62,7 @@ const EditNote = () => {
                   name: 'title',
                   id: 'title',
                   placeholder: 'note title',
-                  // ...formik.getFieldProps('title')
+                  ...formik.getFieldProps('title')
                 }}
               />
               <Input
@@ -70,7 +72,7 @@ const EditNote = () => {
                   name: 'tag',
                   id: 'tag',
                   placeholder: 'note tag',
-                  // ...formik.getFieldProps('tag')
+                  ...formik.getFieldProps('tag')
                 }}
               />
               <Textarea
@@ -80,7 +82,7 @@ const EditNote = () => {
                   name: 'description',
                   id: 'description',
                   placeholder: 'description',
-                  // ...formik.getFieldProps('description')
+                  ...formik.getFieldProps('description')
                 }}
               />
               <div className='my-4'>
@@ -90,7 +92,7 @@ const EditNote = () => {
                   bg='bg-primaryblue'
                   w='w-36'
                   h='h-12'
-                  name= {formik.isSubmitting ? 'loading...': 'Create'}
+                  name= {formik.isSubmitting ? CONSTANT_TEXT.LOADING : 'Edit'}
                   topShape='rounded-full'
               />
               </div>
@@ -100,6 +102,13 @@ const EditNote = () => {
       </div>
     </div>
   )
+}
+
+EditNote.propTypes = {
+  id: PropTypes.number,
+  title: PropTypes.string,
+  tag: PropTypes.string,
+  description: PropTypes.string
 }
 
 export default EditNote;

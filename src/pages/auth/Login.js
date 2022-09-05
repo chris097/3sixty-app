@@ -7,6 +7,8 @@ import { PRIVATE_ROUTE, PUBLIC_ROUTE } from '../../routes/url';
 import { loginSchema } from '../../validator';
 import { authContext } from '../../context/authContext';
 import toast from 'react-hot-toast';
+import { setAuthUser } from '../../api';
+import { CONSTANT_TEXT } from '../../helpers/constant';
 
 const Login = () => {
 
@@ -23,6 +25,7 @@ const Login = () => {
       return auth.login(values,
         responses => {
           if (responses.status === 201) {
+            setAuthUser(responses.data.token)
             navigate(PUBLIC_ROUTE.DASHBOARD_NOTE, { replace: true })
             toast.success(responses.message)
           } else {
@@ -67,7 +70,7 @@ const Login = () => {
             />
             {formik.touched.password && formik.errors.password ? (<span className='text-xs text-red-500'>firstname is required.</span>):null}
             <button className='bg-primaryblue text-white w-full h-12 rounded-full mt-5' type='submit'>
-              {formik.isSubmitting ? 'Loading...' : 'Login'}
+              {formik.isSubmitting ? CONSTANT_TEXT.LOADING : 'Login'}
             </button>
           </form>
           <Link to={PRIVATE_ROUTE.AUTH_FORGOT_PASSWORD}>
