@@ -29,10 +29,10 @@ const DashboardHeader = () => {
         <div className='flex space-x-10'>
           {
             NOTE_LINKS.map((link, index) => (
-              <div className='flex space-x-2 text-sm items-center text-grayshade' key={index}>
+              <div className={`flex space-x-2 text-sm items-center ${index===0 ? 'text-primaryblue':'text-grayshade'}`} key={index}>
                 <span>{link.icon}</span>
                 <span>{link.name}</span>
-                <span>{link.size('10')}</span>
+                <span className={`${index === 0 ? 'bg-secondaryblue' : 'bg-[#DDDDDD] text-white'} rounded-full h-7 w-7 items-center flex justify-center`}>{link.size('10')}</span>
               </div>
             ))
           }

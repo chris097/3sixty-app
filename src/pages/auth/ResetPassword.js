@@ -1,18 +1,18 @@
-import React,{useEffect} from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Input from '../../components/Input';
 import Logo from '../../public/svgs/Logo';
 import { PRIVATE_ROUTE } from '../../routes/url';
 
 const ResetPassword = () => {
-  const { token } = useParams()
-  console.log(token)
-  useEffect(() => {
-    localStorage.setItem("3xity_App", JSON.stringify(token))
-    return () => {
-      true
-    };
-  }, []);
+  // const { token } = useParams()
+  // console.log(token)
+  // useEffect(() => {
+  //   localStorage.setItem("3xity_App", JSON.stringify(token))
+  //   return () => {
+  //     true
+  //   };
+  // }, []);
   return (
     <div className='mx-auto flex justify-center'>
       <div className='w-365px h-auto shadow-baseshadow bg-white px-6 py-8 mt-20 rounded-md'>

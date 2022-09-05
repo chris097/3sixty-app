@@ -13,7 +13,7 @@ import { toggleContext } from '../../context/toggleContext';
 import EditNote from '../../modals/EditModal';
 import DeleteNote from '../../modals/DeleteNote';
 import EmptyNote from '../../public/svgs/EmptyNote';
-import Skeleton from '../../components/Skeleton';
+import {BoardSkeleton, Skeleton} from '../../components/Skeleton';
 
 
 const DashboardNote = () => {
@@ -67,7 +67,7 @@ const DashboardNote = () => {
         </div>
         <div className='flex w-3/4 h-auto mb-40 mt-5'>
           <div className='bg-white w-full pt-20 pb-5 px-20'>
-              {isLoading ? 'Loading...' : (!cards?.length ? <div className='flex justify-center flex-col items-center'>
+              {isLoading ? <BoardSkeleton /> : (!cards?.length ? <div className='flex justify-center flex-col items-center'>
                 <EmptyNote />
                 <div className='text-2xl font-roboto text-primarygray mr-4'>{CONSTANT_TEXT.NOT_FOUND('Note')}</div>
                 <p>Create a Note</p>
