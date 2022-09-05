@@ -1,16 +1,16 @@
 import toast from "react-hot-toast";
-import { getAuthUser } from ".";
+ //import { getAuthUser } from ".";
 
 const authApi = async (url, payload, method, responses) => {
 
-    const authUserData = getAuthUser();
-    const token = authUserData ? authUserData.token : '';
+    const token = JSON.parse(localStorage.getItem("3xity_App"))
+    
 
     const headers = new Headers({
         "Content-Type": "application/json",
         Accept: "application/json",
         "Access-Control-Allow-Origin": "*",
-        authorization: `bearer ${token}`,
+        authorization: `Bearer ${token}`,
     });
 
     const request = new Request(url, {
