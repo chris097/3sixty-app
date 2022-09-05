@@ -12,12 +12,15 @@ import CreateNote from '../../modals/CreateNote';
 import { toggleContext } from '../../context/toggleContext';
 import EditNote from '../../modals/EditModal';
 import DeleteNote from '../../modals/DeleteNote';
+import EmptyNote from '../../public/svgs/EmptyNote';
+import Skeleton from '../../components/Skeleton';
 
 
 const DashboardNote = () => {
 
   const [currIndx, setCurrIndx] = useState(0);
   const [show, setShow] = useState(false);
+  const [currentId, setCurrentId] = useState();
 
   const toggle = useContext(toggleContext);
 
@@ -32,13 +35,18 @@ const DashboardNote = () => {
   return (
     <>
       {toggle.create && <CreateNote />}
-      {toggle.edit && <EditNote />}
-      {toggle.delete && <DeleteNote />}
+      {toggle.edit && <EditNote
+        title={cards[currIndx].title}
+        tag={cards[currIndx].tag}
+        description={cards[currIndx].description}
+        id={currentId}
+      />}
+      {toggle.delete && <DeleteNote id={currentId} />}
     <div className='bg-dartblue w-full min-h-screen'>
       <div className='flex h-screen space-x-8'>
         <div className='w-356px border-l overflow-scroll h-5/6 border-grayshade bg-white'>
-            {isLoading ? CONSTANT_TEXT.LOADING
-              : (!cards?.length ? CONSTANT_TEXT.EMPTY_LIST('note')
+            {isLoading ? <span><Skeleton /></span>
+              : (!cards?.length ? <div className='text-center text-primarygray mt-10'>{CONSTANT_TEXT.EMPTY_LIST('Note')}</div>
               : cards?.map((card, index) => (
               <DartCard
                   key={index}
@@ -52,13 +60,18 @@ const DashboardNote = () => {
                   clickHandler={() => {
                     setCurrIndx(index)
                     setShow(open => !open)
+                    setCurrentId(card?._id)
                   }}
               />
           )))}
         </div>
         <div className='flex w-3/4 h-auto mb-40 mt-5'>
           <div className='bg-white w-full pt-20 pb-5 px-20'>
-            {isLoading ? 'Loading...' : (!cards?.length ? CONSTANT_TEXT.NOT_FOUND('Note') :
+              {isLoading ? 'Loading...' : (!cards?.length ? <div className='flex justify-center flex-col items-center'>
+                <EmptyNote />
+                <div className='text-2xl font-roboto text-primarygray mr-4'>{CONSTANT_TEXT.NOT_FOUND('Note')}</div>
+                <p>Create a Note</p>
+            </div> :
               <>
                 <div className='text-5xl font-roboto'>{cards[currIndx].title}</div>
                 <p className='text-sm text-textgray mt-8'>{cards[currIndx].description}</p>

@@ -7,6 +7,7 @@ import { PRIVATE_ROUTE, PUBLIC_ROUTE } from '../../routes/url'
 import { signupSchema } from '../../validator';
 import { authContext } from '../../context/authContext';
 import toast from 'react-hot-toast';
+import { setAuthUser } from '../../api';
 // import { useAuth } from '../../context/authContext';
 
 
@@ -29,8 +30,11 @@ const Register = () => {
       return auth.register(values,
         responses => {
           if (responses.status === 201) {
+            setAuthUser(responses.data.token)
             navigate(PUBLIC_ROUTE.DASHBOARD_NOTE, { replace: true })
             toast.success(responses.message)
+          } else {
+            toast.error(responses.message)
           }
         }
 

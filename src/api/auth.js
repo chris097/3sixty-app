@@ -1,26 +1,20 @@
 import toast from "react-hot-toast";
+import { getAuthUser } from ".";
 
-// export const getAuthUser = () => {
-// 	const user = localStorage.getItem(3XITY_APP_AUTH_USER);
-// 	return user ? JSON.parse(user) : '';
-// };
-// export const setAuthUser = (user) => {
-// 	localStorage.setItem(3XITY_APP_AUTH_USER, JSON.stringify(user));
-// };
-// export const removeAuthUser = () => {
-// 	localStorage.removeItem(3XITY_APP_AUTH_USER);
-// };
+const authApi = async (url, payload, method, responses) => {
 
-const authApi = async (url, payload, responses) => {
+    const authUserData = getAuthUser();
+    const token = authUserData ? authUserData.token : '';
 
     const headers = new Headers({
         "Content-Type": "application/json",
         Accept: "application/json",
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
+        authorization: `bearer ${token}`,
     });
 
     const request = new Request(url, {
-        method: 'POST',
+        method: method,
         headers,
         body: JSON.stringify(payload),
     })

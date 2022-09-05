@@ -35,16 +35,3 @@ export const ToggleProvider = ({ children }) => {
 ToggleProvider.propTypes = {
     children: PropTypes.node
 }
-
-// import { GORATE_APP_AUTH_USER } from 'helpers/constants';
-
-// export const getAuthUser = () => {
-// 	const user = localStorage.getItem(GORATE_APP_AUTH_USER);
-// 	return user ? JSON.parse(user) : '';
-// };
-// export const setAuthUser = (user) => {
-// 	localStorage.setItem(GORATE_APP_AUTH_USER, JSON.stringify(user));
-// };
-// export const removeAuthUser = () => {
-// 	localStorage.removeItem(GORATE_APP_AUTH_USER);
-// };

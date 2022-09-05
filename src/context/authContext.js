@@ -18,12 +18,12 @@ export const AuthProvider = ({ children }) => {
 
     const login = (payload, responses) => {
         const loginUrl = `${REACT_APP_BACKEND_URL}/${apiUrl.LOGIN_URL}`;
-        return authApi(loginUrl, payload, responses)
+        return authApi(loginUrl, payload, 'POST', responses)
     };
 
     const register = (payload, responses) => {
         const registerUrl = `${REACT_APP_BACKEND_URL}/${apiUrl.REGISTER_URL}`;
-        return authApi(registerUrl, payload, responses)
+        return authApi(registerUrl, payload, 'POST', responses)
     }
 
     const logout = () => {
