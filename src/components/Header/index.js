@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../../public/svgs/Logo'
+import { PRIVATE_ROUTE } from '../../routes/url'
 import PrimaryButton from './../Button/PrimaryButton'
 
 const Header = () => {
@@ -9,7 +10,7 @@ const Header = () => {
       <div className="flex justify-between h-16 items-center px-14">
         <Logo />
         <div className="flex text-sm">
-          <Link to='/login'>
+          <Link to={PRIVATE_ROUTE.AUTH_LOGIN}>
             <PrimaryButton
               h="h-10"
               w="w-20"
@@ -20,7 +21,7 @@ const Header = () => {
               bottomShape="rounded-bl-full"
             />
           </Link>
-          <Link to="/register">
+          <Link to={PRIVATE_ROUTE.AUTH_REGISTER}>
             <PrimaryButton
               h="h-10"
               w="w-20"
