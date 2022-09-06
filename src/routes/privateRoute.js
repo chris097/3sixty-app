@@ -2,6 +2,7 @@ import React, { lazy } from "react";
 import { Navigate } from "react-router-dom";
 import { PRIVATE_ROUTE } from "./url";
 const Login = lazy(() => import("../pages/auth/Login"));
+const MailSent = lazy(() => import("../pages/auth/MailSent"));
 const Register = lazy(() => import("../pages/auth/Register"));
 const ResetPassword = lazy(() => import("../pages/auth/ResetPassword"));
 const ForgotPassword = lazy(() => import("../pages/auth/ForgotPassword"));
@@ -23,6 +24,10 @@ export const privateRoute = [
     {
         path: PRIVATE_ROUTE.AUTH_FORGOT_PASSWORD,
         element: <ForgotPassword />
+    },
+    {
+        path: PRIVATE_ROUTE.AUTH_MAIL_SENT,
+        element: <MailSent />
     },
     {
         path: PRIVATE_ROUTE.AUTH_NOT_FOUND,

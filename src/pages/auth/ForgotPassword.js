@@ -1,12 +1,18 @@
 import { useFormik } from 'formik'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import toast from 'react-hot-toast'
+import { Link, useNavigate } from 'react-router-dom'
 import Input from '../../components/Input'
+import { authContext } from '../../context/authContext'
 import Logo from '../../public/svgs/Logo'
 import { PRIVATE_ROUTE } from '../../routes/url'
 import { forgotPasswordSchema } from '../../validator'
 
 const ForgotPassword = () => {
+
+  const auth = useContext(authContext);
+
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -15,6 +21,16 @@ const ForgotPassword = () => {
     validationSchema: forgotPasswordSchema,
     onSubmit: value => {
       console.log(value)
+      return auth.resetPassword(value,
+        responses => {
+          if (responses) {
+            toast.success(responses.message);
+            navigate(PRIVATE_ROUTE.AUTH_MAIL_SENT)
+          } else {
+            toast.error(responses.message)
+          }
+        }
+      )
     }
   });
 
