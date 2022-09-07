@@ -20,7 +20,6 @@ const ForgotPassword = () => {
     },
     validationSchema: forgotPasswordSchema,
     onSubmit: value => {
-      console.log(value)
       return auth.resetPassword(value,
         responses => {
           if (responses) {
