@@ -1,10 +1,9 @@
 import toast from "react-hot-toast";
- //import { getAuthUser } from ".";
+import { getAuthUser } from "./index";
 
 const authApi = async (url, payload, method, responses) => {
 
-    const token = JSON.parse(localStorage.getItem("3xity_App"))
-    
+    const token = getAuthUser();
 
     const headers = new Headers({
         "Content-Type": "application/json",
