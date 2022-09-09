@@ -1,6 +1,8 @@
+import { getAuthUser } from "./index";
+
 const queryApi = (url) => {
 
-     const token = JSON.parse(localStorage.getItem("3xity_App"))
+     const token = getAuthUser();
 
     const headers = new Headers({
         "Content-Type": "application/json",
