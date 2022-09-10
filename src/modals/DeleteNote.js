@@ -21,7 +21,7 @@ const DeleteNote = (props) => {
   const deleteHandler = () => {
     return deleteNote(props.id,
       responses => {
-        if (responses) {
+        if (responses === 201) {
           toast.success(responses.message)
           toggle.toggleCloseNote()
           queryClient.invalidateQueries('notes')
