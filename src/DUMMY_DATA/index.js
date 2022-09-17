@@ -7,7 +7,7 @@ import Todo from '../public/svgs/Todo';
 
 export const TRACK_INFO = [
   { icon: <Gsign />, title: "Track your daily activities" },
-  { icon: <Gsign />, title: "Save important notes or code snippets you’re likely to reuse" },
+  { icon: <Gsign />, title: `ave important notes or code snippets you’re likely to reuse` },
   { icon: <Gsign />, title: "Keep a diary of your daily activities" },
 ];
 
