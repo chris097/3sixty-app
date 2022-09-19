@@ -12,7 +12,7 @@ const MailSent = () => {
           <div className='text-xl text-primarygray'>Mail Sent Successfully</div>
           <div className='text-sm text-textgray my-3'>Please Kindly check your mail, a link has been sent to you to reset your password</div>
           </div>
-        </div>
+      </div>
     </div>
   )
 }
