@@ -16,5 +16,5 @@ export const noteSchema = Yup.object({
     description: Yup.string().required().min(50).max(1000),
 });
 export const forgotPasswordSchema = Yup.object({
-    email: Yup.string().email('email is required').required().trim()
+    email: Yup.string().email().required().trim()
 });
